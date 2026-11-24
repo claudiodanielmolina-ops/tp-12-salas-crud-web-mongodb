@@ -1,0 +1,50 @@
+<section class="panel-formulario">
+    <p class="etiqueta">
+        <%= seccion %>
+    </p>
+    <h1>
+        <%= titulo %>
+    </h1>
+
+    <% if (error) { %>
+        <p class="error" role="alert">
+            <%= error %>
+        </p>
+        <% } %>
+
+            <p class="error" role="status">
+                ⚠️ Atención: esta acción eliminará permanentemente la reserva y no se puede deshacer.
+            </p>
+
+            <article class="tarjeta-reserva" style="margin-bottom: 1.25rem;">
+                <div class="reserva-cabecera">
+                    <span class="reserva-id">ID: <%= id %></span>
+                    <span class="badge-turno" data-turno="<%= reserva.turno %>">
+                        <%= reserva.turno %>
+                    </span>
+                </div>
+                <h2 class="reserva-sala">
+                    <%= reserva.sala %>
+                </h2>
+                <div class="reserva-estudiante">
+                    <p class="nombre">
+                        <%= reserva.estudiante %>
+                    </p>
+                </div>
+                <div class="reserva-detalles">
+                    <span class="reserva-fecha">📅 <%= reserva.fecha %></span>
+                    <span class="reserva-turno">🕒 Turno: <strong>
+                            <%= reserva.turno %>
+                        </strong></span>
+                </div>
+            </article>
+
+            <form action="/reservas/<%= id %>/eliminar" method="post" class="formulario">
+                <input type="hidden" name="confirmar" value="si">
+
+                <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 0.5rem;">
+                    <button type="submit">Confirmar eliminación</button>
+                    <a href="/reservas/<%= id %>" class="boton">Cancelar</a>
+                </div>
+            </form>
+</section>
